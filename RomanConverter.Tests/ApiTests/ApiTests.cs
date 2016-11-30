@@ -4,13 +4,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MyFirstDotNetCoreTests
+namespace RomanConverterTests
 {
-  public class Class1
+  public class ApiTests
   {
     private readonly TestServer _server;
     private readonly HttpClient _client;
-    public Class1()
+    public ApiTests()
     {
       // Arrange
       _server = new TestServer(new WebHostBuilder()
@@ -19,7 +19,7 @@ namespace MyFirstDotNetCoreTests
     }
 
     [Fact]
-    public async Task ReturnHelloWorld()
+    public async Task GetSingleRoman()
     {
       // Act
       var response = await _client.GetAsync("api/roman/1");
