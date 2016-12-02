@@ -6,7 +6,8 @@
     "Microsoft.AspNetCore.TestHost": "1.1.0",
     "RomanConverter": {
       "target": "project"
-    }
+    },
+    "System.Diagnostics.TraceSource": "4.0.0"
   },
   "testRunner": "xunit",
   "frameworks": {
