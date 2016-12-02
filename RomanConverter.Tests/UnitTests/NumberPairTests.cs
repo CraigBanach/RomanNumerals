@@ -23,7 +23,7 @@ namespace RomanConverter.Tests.UnitTests
       TestPairs[3] = new NumberPair() { Base10 = 50, Numeral = "L" };
       TestPairs[4] = new NumberPair() { Base10 = 100, Numeral = "C" };
       TestPairs[5] = new NumberPair() { Base10 = 500, Numeral = "D" };
-      TestPairs[6] = new NumberPair() { Base10 = 100, Numeral = "M" };
+      TestPairs[6] = new NumberPair() { Base10 = 1000, Numeral = "M" };
     }
     
     [Fact]
@@ -39,7 +39,7 @@ namespace RomanConverter.Tests.UnitTests
         testNumberPair.Convert();
 
         //Assert
-        Assert.Equal(testNumberPair, TestPairs[i], new NumberPairComparer());
+        Assert.Equal(TestPairs[i], testNumberPair, new NumberPairComparer());
       }
     }
   }
