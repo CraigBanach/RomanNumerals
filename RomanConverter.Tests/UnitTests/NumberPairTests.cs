@@ -12,7 +12,7 @@ namespace RomanConverter.Tests.UnitTests
 {
   public class NumberPairTests
   {
-    private NumberPair[] TestPairs = new NumberPair[11];
+    private NumberPair[] TestPairs = new NumberPair[12];
     public IConfigurationRoot Configuration;
 
     public NumberPairTests() {
@@ -28,8 +28,7 @@ namespace RomanConverter.Tests.UnitTests
       TestPairs[8] = new NumberPair() { Base10 = 30, Numeral = "XXX" };
       TestPairs[9] = new NumberPair() { Base10 = 300, Numeral = "CCC" };
       TestPairs[10] = new NumberPair() { Base10 = 3000, Numeral = "MMM" };
-      //TestPairs[11] = new NumberPair() { Base10 = 4, Numeral = "M" };
-      //TestPairs[12] = new NumberPair() { Base10 = 49, Numeral = "M" };
+      TestPairs[11] = new NumberPair() { Base10 = 4, Numeral = "IV" };
     }
     
     [Fact]

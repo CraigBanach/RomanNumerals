@@ -38,8 +38,32 @@ namespace RomanConverter.Models
       {
         int multiples = number / NumeralMappings.number[i];
 
-        mapping.Append(NumeralMappings.numeral[i], multiples);
-        number -= multiples * NumeralMappings.number[i];
+        // If the number is greater than 3 times the current numeral,
+
+        if ( NumeralMappings.number[i] * 3 < number )
+        {
+          int currentValue = NumeralMappings.number[i + 1];
+          int numberOfNumerals = NumeralMappings.number[i] / (currentValue - number);
+
+          mapping.Append(NumeralMappings.numeral[i], numberOfNumerals);
+          mapping.Append(NumeralMappings.numeral[i + 1]);
+          
+          number += NumeralMappings.number[i + 1];
+          number -= numberOfNumerals * NumeralMappings.number[i];
+        } else
+        {
+
+          // Work out what to add
+
+
+
+          // Else
+
+
+
+          mapping.Append(NumeralMappings.numeral[i], multiples);
+          number -= multiples * NumeralMappings.number[i];
+        }
       }
 
       Numeral = mapping.ToString();
