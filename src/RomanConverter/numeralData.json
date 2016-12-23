@@ -1,0 +1,30 @@
+{
+  "1": {
+    "base10": 1,
+    "numeral": "I"
+  },
+  "2": {
+    "base10": 5,
+    "numeral": "V"
+  },
+  "3": {
+    "base10": 10,
+    "numeral": "X"
+  },
+  "4": {
+    "base10": 50,
+    "numeral": "L"
+  },
+  "5": {
+    "base10": 100,
+    "numeral": "C"
+  },
+  "6": {
+    "base10": 500,
+    "numeral": "D"
+  },
+  "7": {
+    "base10": 1000,
+    "numeral": "M"
+  }
+}

@@ -177,3 +177,5 @@
 "G:\dev\RomanConverter\src\RomanConverter\Controllers\apiControllers\RomanController.cs"
 "G:\dev\RomanConverter\src\RomanConverter\Models\NumberPair.cs"
 "G:\dev\RomanConverter\src\RomanConverter\Models\NumeralMappings.cs"
+"G:\dev\RomanConverter\src\RomanConverter\Models\Numerals.cs"
+"G:\dev\RomanConverter\src\RomanConverter\Models\Exceptions\InputOutOfRangeException.cs"
