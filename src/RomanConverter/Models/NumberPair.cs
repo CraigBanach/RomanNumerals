@@ -36,7 +36,7 @@ namespace RomanConverter.Models
       if ( number > Numerals.RomanLimit )
         throw new InputOutOfRangeException();
 
-      Dictionary<Numeral, byte>[] numeralArray = new Dictionary<Numeral, byte>[4];
+      Dictionary<Numeral, SByte>[] numeralArray = new Dictionary<Numeral, SByte>[4];
 
       if ( number > 999 )
       {
@@ -62,42 +62,69 @@ namespace RomanConverter.Models
       Numeral = pieceTogether(numeralArray);
     }
 
-    private string pieceTogether( Dictionary<Numeral, byte>[] numeralArray )
+    private string pieceTogether( Dictionary<Numeral, SByte>[] numeralArray )
     {
       StringBuilder mapping = new StringBuilder();
 
-      foreach ( Dictionary<Numeral, byte> dictionary in numeralArray )
+      foreach ( Dictionary<Numeral, SByte> dictionary in numeralArray )
       {
-        if ( dictionary != null)
-          mapping.Append(Enum.GetName(typeof(Numeral), 1000)[0], dictionary[Numerals.Numeral.M]);
+        if ( dictionary != null )
+        {
+          var orderedNumerals = OrderDictionary(dictionary);
+
+          foreach ( var KVP in orderedNumerals )
+          {
+            mapping.Append(KVP.Key.ToString()[0] , Math.Abs(KVP.Value));
+          }
+        }
+          
       }
       return mapping.ToString();
     }
 
-    private Dictionary<Numeral, byte> CalculateHundreds( int number )
+    private IEnumerable<KeyValuePair<Numeral, SByte>> OrderDictionary( Dictionary<Numeral, SByte> dictionary )
     {
-      Dictionary<Numeral, byte> dictionary = new Dictionary<Numeral, byte>();
+      List<KeyValuePair<Numeral, SByte>> result = new List<KeyValuePair<Numeral, SByte>>();
+
+      if ( dictionary.Values.Min() < 0 )
+      {
+        var keyAndValue = dictionary.OrderBy(kvp => kvp.Value).First();
+        result.Add(keyAndValue);
+        dictionary.Remove(keyAndValue.Key);
+      }
+
+      foreach ( var KVP in dictionary )
+      {
+        result.Add(new KeyValuePair<Numeral, SByte>(KVP.Key, KVP.Value));
+      }
+
+      return result;
+    }
+
+    private Dictionary<Numeral, SByte> CalculateHundreds( int number )
+    {
+      Dictionary<Numeral, SByte> dictionary = new Dictionary<Numeral, SByte>();
 
       if ( number > 899 )
       {
         dictionary.Add(Numerals.Numeral.M, 1);
-        dictionary.Add(Numerals.Numeral.C, System.Convert.ToByte(- 1));
+        dictionary.Add(Numerals.Numeral.C, System.Convert.ToSByte(0-1));
       }
-      if ( number > 399 )
+      else if ( number > 399 )
       {
         dictionary.Add(Numerals.Numeral.D, 1);
-        byte CToAdd = (byte) Math.Floor(System.Convert.ToDouble(number - 500) / 100);
+        SByte CToAdd = (SByte) Math.Floor(System.Convert.ToDouble(number - 500) / 100);
         dictionary.Add(Numerals.Numeral.C, CToAdd);
       }
-      if ( number < 400 )
-        dictionary.Add(Numerals.Numeral.C, (byte) (number / 100));
+      else if ( number < 400 )
+        dictionary.Add(Numerals.Numeral.C, (SByte) (number / 100));
 
       return dictionary;
     }
 
-    private Dictionary<Numeral, byte> CalculateThousands( int number )
+    private Dictionary<Numeral, SByte> CalculateThousands( int number )
     {
-      return new Dictionary<Numeral, byte> { [Numerals.Numeral.M] = (byte) (number / 1000) };
+      return new Dictionary<Numeral, SByte> { [Numerals.Numeral.M] = (SByte) (number / 1000) };
     }
   }
 }

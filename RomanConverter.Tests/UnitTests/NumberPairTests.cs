@@ -12,7 +12,7 @@ namespace RomanConverter.Tests.UnitTests
 {
   public class NumberPairTests
   {
-    private NumberPair[] TestPairs = new NumberPair[2];
+    private List<NumberPair> TestPairs = new List<NumberPair>();
     public IConfigurationRoot Configuration;
 
     public NumberPairTests() {
@@ -32,8 +32,21 @@ namespace RomanConverter.Tests.UnitTests
       TestPairs[12] = new NumberPair() { Base10 = 9, Numeral = "IX" };
       */
 
-      TestPairs[0] = new NumberPair() { Base10 = 1000, Numeral = "M" };
-      TestPairs[1] = new NumberPair() { Base10 = 2000, Numeral = "MM" };
+      TestPairs.Add( new NumberPair() { Base10 = 1000, Numeral = "M" });
+      TestPairs.Add(new NumberPair() { Base10 = 2000, Numeral = "MM" });
+      TestPairs.Add(new NumberPair() { Base10 = 3000, Numeral = "MMM" });
+      TestPairs.Add(new NumberPair() { Base10 = 900, Numeral = "CM" });
+      TestPairs.Add(new NumberPair() { Base10 = 800, Numeral = "DCCC" });
+      TestPairs.Add(new NumberPair() { Base10 = 700, Numeral = "DCC" });
+      TestPairs.Add(new NumberPair() { Base10 = 600, Numeral = "DC" });
+      TestPairs.Add(new NumberPair() { Base10 = 500, Numeral = "D" });
+      TestPairs.Add(new NumberPair() { Base10 = 400, Numeral = "CD" });
+      TestPairs.Add(new NumberPair() { Base10 = 300, Numeral = "CCC" });
+      TestPairs.Add(new NumberPair() { Base10 = 200, Numeral = "CC" });
+      TestPairs.Add(new NumberPair() { Base10 = 100, Numeral = "C" });
+      TestPairs.Add(new NumberPair() { Base10 = 1900, Numeral = "MCM" });
+      TestPairs.Add(new NumberPair() { Base10 = 2400, Numeral = "MMCD" });
+      TestPairs.Add(new NumberPair() { Base10 = 3200, Numeral = "MMMCC" });
     }
     
     [Fact]
@@ -41,7 +54,7 @@ namespace RomanConverter.Tests.UnitTests
     {
 
       // Tests all milestone numeral conversions
-      for (int i = 0 ; i < TestPairs.Length ; i++ )
+      for (int i = 0 ; i < TestPairs.Count ; i++ )
       {
         NumberPair testNumberPair = new NumberPair() { Base10 = TestPairs[i].Base10 };
 
