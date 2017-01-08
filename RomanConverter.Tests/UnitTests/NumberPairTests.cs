@@ -17,22 +17,8 @@ namespace RomanConverter.Tests.UnitTests
 
     public NumberPairTests()
     {
-      /*
-      TestPairs[0] = new NumberPair() { Base10 = 1, Numeral = "I" };
-      TestPairs[1] = new NumberPair() { Base10 = 5, Numeral = "V" };
-      TestPairs[2] = new NumberPair() { Base10 = 10, Numeral = "X" };
-      TestPairs[3] = new NumberPair() { Base10 = 50, Numeral = "L" };
-      TestPairs[4] = new NumberPair() { Base10 = 100, Numeral = "C" };
-      TestPairs[5] = new NumberPair() { Base10 = 500, Numeral = "D" };
-      TestPairs[6] = new NumberPair() { Base10 = 1000, Numeral = "M" };
-      TestPairs[7] = new NumberPair() { Base10 = 3, Numeral = "III" };
-      TestPairs[8] = new NumberPair() { Base10 = 30, Numeral = "XXX" };
-      TestPairs[9] = new NumberPair() { Base10 = 300, Numeral = "CCC" };
-      TestPairs[10] = new NumberPair() { Base10 = 3000, Numeral = "MMM" };
-      TestPairs[11] = new NumberPair() { Base10 = 4, Numeral = "IV" };
-      TestPairs[12] = new NumberPair() { Base10 = 9, Numeral = "IX" };
-      */
 
+      TestPairs.Add(new NumberPair() { Base10 = 3900, Numeral = "MMMCM" });
       TestPairs.Add(new NumberPair() { Base10 = 1000, Numeral = "M" });
       TestPairs.Add(new NumberPair() { Base10 = 2000, Numeral = "MM" });
       TestPairs.Add(new NumberPair() { Base10 = 3000, Numeral = "MMM" });
@@ -81,8 +67,21 @@ namespace RomanConverter.Tests.UnitTests
 
         Assert.Equal(TestPairs[i], testNumberPair, new NumberPairComparer());
       }
+    }
 
+    [Fact]
+    public void ConvertsNumeralsToBase10()
+    {
 
+      // Tests all milestone numeral conversions
+      for ( int i = 0 ; i < TestPairs.Count ; i++ )
+      {
+        NumberPair testNumberPair = new NumberPair() { Numeral = TestPairs[i].Numeral };
+
+        testNumberPair.Convert();
+
+        Assert.Equal(TestPairs[i], testNumberPair, new NumberPairComparer());
+      }
     }
   }
 }

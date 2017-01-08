@@ -26,7 +26,73 @@ namespace RomanConverter.Models
 
     private void ConvertToBase10()
     {
-      //throw new NotImplementedException();
+      String query = Numeral;
+
+      int result = 0;
+
+      if ( query[0] == 'M' )
+      {
+        Tuple<int, string> thousandsResult = CalculateNumbers(query, new char[] { 'M' });
+        result += thousandsResult.Item1;
+        query = thousandsResult.Item2;
+      }
+      if ( query[0] == 'C' || query[0] == 'D' )
+      {
+        Tuple<int, string> hundredsResult = CalculateNumbers(query, new char[] { 'M', 'C', 'D' });
+        result += hundredsResult.Item1;
+        query = hundredsResult.Item2;
+      }
+      if ( query[0] == 'X' || query[0] == 'L' )
+      {
+        Tuple<int, string> tensResult = CalculateNumbers(query, new char[] { 'C', 'X', 'L' });
+        result += tensResult.Item1;
+        query = tensResult.Item2;
+      }
+      if ( query[0] == 'V' || query[0] == 'I' )
+      {
+        Tuple<int, string> unitsResult = CalculateNumbers(query, new char[] { 'X', 'V', 'I' });
+        result += unitsResult.Item1;
+        query = unitsResult.Item2;
+      }
+      Base10 = result;
+    }
+
+    private Tuple<int, string> CalculateNumbers( string query, char[] array )
+    {
+      int result = 0;
+      while ( Array.IndexOf(array, query[0]) != -1 )
+      {
+        int modifier = 1;
+        int currentValue = 0;
+        Numerals.Numeral TestEnum;
+        if ( Enum.TryParse(query[0].ToString(), out TestEnum) )
+        {
+          currentValue = (int) TestEnum;
+        }
+        try
+        {
+          int nextValue = 0;
+          if ( Enum.TryParse(query[1].ToString(), out TestEnum) )
+          {
+            nextValue = (int) TestEnum;
+          }
+          if ( currentValue < nextValue )
+            modifier = -1;
+        }
+        catch ( IndexOutOfRangeException )
+        {
+          // modifier remains as 1
+          // This catch block will run if query is only one character in length and therefore,
+          // the currentValue should be added to the sum.
+        }
+        result += currentValue * modifier;
+        query = query.Substring(1);
+
+        if ( query.Length == 0 )
+          query = "i";
+      }
+
+      return Tuple.Create(result, query);
     }
 
     private void ConvertToRoman()
@@ -41,30 +107,28 @@ namespace RomanConverter.Models
       if ( number > 999 )
       {
         // Do thousand Stuff
-        numeralArray[0] = CalculateThousands(number);
+        numeralArray[0] = romCalculateThousands(number);
         number = number % 1000;
       }
       if ( number > 99 )
       {
         // Do hundreds stuff
-        numeralArray[1] = CalculateHundreds(number);
+        numeralArray[1] = romCalculateHundreds(number);
         number = number % 100;
       }
       if ( number > 9)
       {
-        numeralArray[2] = CalculateTens(number);
+        numeralArray[2] = romCalculateTens(number);
         number = number % 10;
       }
       if ( number != 0 )
       {
         // Do units stuff
-        numeralArray[3] = CalculateUnits(number);
+        numeralArray[3] = romCalculateUnits(number);
       }
 
       Numeral = pieceTogether(numeralArray);
     }
-
-   
 
     private string pieceTogether( Dictionary<Numeral, SByte>[] numeralArray )
     {
@@ -105,7 +169,7 @@ namespace RomanConverter.Models
       return result;
     }
 
-    private Dictionary<Numeral, sbyte> CalculateUnits( int number )
+    private Dictionary<Numeral, sbyte> romCalculateUnits( int number )
     {
       Dictionary<Numeral, SByte> dictionary = new Dictionary<Numeral, SByte>();
 
@@ -126,7 +190,7 @@ namespace RomanConverter.Models
       return dictionary;
     }
 
-    private Dictionary<Numeral, sbyte> CalculateTens( int number )
+    private Dictionary<Numeral, sbyte> romCalculateTens( int number )
     {
       Dictionary<Numeral, SByte> dictionary = new Dictionary<Numeral, SByte>();
 
@@ -147,8 +211,7 @@ namespace RomanConverter.Models
       return dictionary;
     }
 
-
-    private Dictionary<Numeral, SByte> CalculateHundreds( int number )
+    private Dictionary<Numeral, SByte> romCalculateHundreds( int number )
     {
       Dictionary<Numeral, SByte> dictionary = new Dictionary<Numeral, SByte>();
 
@@ -169,7 +232,7 @@ namespace RomanConverter.Models
       return dictionary;
     }
 
-    private Dictionary<Numeral, SByte> CalculateThousands( int number )
+    private Dictionary<Numeral, SByte> romCalculateThousands( int number )
     {
       return new Dictionary<Numeral, SByte> { [Numerals.Numeral.M] = (SByte) (number / 1000) };
     }
