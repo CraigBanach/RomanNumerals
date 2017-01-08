@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using RomanConverter.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
@@ -27,8 +28,10 @@ namespace RomanConverterTests
 
       var responseString = await response.Content.ReadAsStringAsync();
 
+      NumberPair expectedResponse = new NumberPair() { Base10 = 1, Numeral = "I" };
+
       // Assert
-      Assert.Equal("I",
+      Assert.Equal("{\"base10\":1,\"numeral\":\"I\"}",
           responseString);
     }
   }

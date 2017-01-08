@@ -54,7 +54,11 @@ namespace RomanConverter.Models
         result += unitsResult.Item1;
         query = unitsResult.Item2;
       }
-      Base10 = result;
+
+      if ( result > 3999 )
+      { Base10 = 0; }
+      else
+      { Base10 = result; }
     }
 
     private Tuple<int, string> CalculateNumbers( string query, char[] array )
