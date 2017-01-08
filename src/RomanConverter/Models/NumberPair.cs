@@ -52,15 +52,19 @@ namespace RomanConverter.Models
       }
       if ( number > 9)
       {
-        // Do hundreds stuff
+        numeralArray[2] = CalculateTens(number);
+        number = number % 10;
       }
       if ( number != 0 )
       {
         // Do units stuff
+        numeralArray[3] = CalculateUnits(number);
       }
 
       Numeral = pieceTogether(numeralArray);
     }
+
+   
 
     private string pieceTogether( Dictionary<Numeral, SByte>[] numeralArray )
     {
@@ -100,6 +104,49 @@ namespace RomanConverter.Models
 
       return result;
     }
+
+    private Dictionary<Numeral, sbyte> CalculateUnits( int number )
+    {
+      Dictionary<Numeral, SByte> dictionary = new Dictionary<Numeral, SByte>();
+
+      if ( number > 8 )
+      {
+        dictionary.Add(Numerals.Numeral.X, 1);
+        dictionary.Add(Numerals.Numeral.I, System.Convert.ToSByte(0 - 1));
+      }
+      else if ( number > 3 )
+      {
+        dictionary.Add(Numerals.Numeral.V, 1);
+        SByte CToAdd = (SByte) Math.Floor(System.Convert.ToDouble(number - 5) / 1);
+        dictionary.Add(Numerals.Numeral.I, CToAdd);
+      }
+      else if ( number < 4 )
+        dictionary.Add(Numerals.Numeral.I, (SByte) (number / 1));
+
+      return dictionary;
+    }
+
+    private Dictionary<Numeral, sbyte> CalculateTens( int number )
+    {
+      Dictionary<Numeral, SByte> dictionary = new Dictionary<Numeral, SByte>();
+
+      if ( number > 89 )
+      {
+        dictionary.Add(Numerals.Numeral.C, 1);
+        dictionary.Add(Numerals.Numeral.X, System.Convert.ToSByte(0 - 1));
+      }
+      else if ( number > 39 )
+      {
+        dictionary.Add(Numerals.Numeral.L, 1);
+        SByte CToAdd = (SByte) Math.Floor(System.Convert.ToDouble(number - 50) / 10);
+        dictionary.Add(Numerals.Numeral.X, CToAdd);
+      }
+      else if ( number < 40 )
+        dictionary.Add(Numerals.Numeral.X, (SByte) (number / 10));
+
+      return dictionary;
+    }
+
 
     private Dictionary<Numeral, SByte> CalculateHundreds( int number )
     {

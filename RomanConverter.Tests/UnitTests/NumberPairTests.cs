@@ -15,7 +15,8 @@ namespace RomanConverter.Tests.UnitTests
     private List<NumberPair> TestPairs = new List<NumberPair>();
     public IConfigurationRoot Configuration;
 
-    public NumberPairTests() {
+    public NumberPairTests()
+    {
       /*
       TestPairs[0] = new NumberPair() { Base10 = 1, Numeral = "I" };
       TestPairs[1] = new NumberPair() { Base10 = 5, Numeral = "V" };
@@ -32,7 +33,7 @@ namespace RomanConverter.Tests.UnitTests
       TestPairs[12] = new NumberPair() { Base10 = 9, Numeral = "IX" };
       */
 
-      TestPairs.Add( new NumberPair() { Base10 = 1000, Numeral = "M" });
+      TestPairs.Add(new NumberPair() { Base10 = 1000, Numeral = "M" });
       TestPairs.Add(new NumberPair() { Base10 = 2000, Numeral = "MM" });
       TestPairs.Add(new NumberPair() { Base10 = 3000, Numeral = "MMM" });
       TestPairs.Add(new NumberPair() { Base10 = 900, Numeral = "CM" });
@@ -44,11 +45,29 @@ namespace RomanConverter.Tests.UnitTests
       TestPairs.Add(new NumberPair() { Base10 = 300, Numeral = "CCC" });
       TestPairs.Add(new NumberPair() { Base10 = 200, Numeral = "CC" });
       TestPairs.Add(new NumberPair() { Base10 = 100, Numeral = "C" });
-      TestPairs.Add(new NumberPair() { Base10 = 1900, Numeral = "MCM" });
-      TestPairs.Add(new NumberPair() { Base10 = 2400, Numeral = "MMCD" });
-      TestPairs.Add(new NumberPair() { Base10 = 3200, Numeral = "MMMCC" });
+      TestPairs.Add(new NumberPair() { Base10 = 90, Numeral = "XC" });
+      TestPairs.Add(new NumberPair() { Base10 = 80, Numeral = "LXXX" });
+      TestPairs.Add(new NumberPair() { Base10 = 70, Numeral = "LXX" });
+      TestPairs.Add(new NumberPair() { Base10 = 60, Numeral = "LX" });
+      TestPairs.Add(new NumberPair() { Base10 = 50, Numeral = "L" });
+      TestPairs.Add(new NumberPair() { Base10 = 40, Numeral = "XL" });
+      TestPairs.Add(new NumberPair() { Base10 = 30, Numeral = "XXX" });
+      TestPairs.Add(new NumberPair() { Base10 = 20, Numeral = "XX" });
+      TestPairs.Add(new NumberPair() { Base10 = 10, Numeral = "X" });
+      TestPairs.Add(new NumberPair() { Base10 = 9, Numeral = "IX" });
+      TestPairs.Add(new NumberPair() { Base10 = 8, Numeral = "VIII" });
+      TestPairs.Add(new NumberPair() { Base10 = 7, Numeral = "VII" });
+      TestPairs.Add(new NumberPair() { Base10 = 6, Numeral = "VI" });
+      TestPairs.Add(new NumberPair() { Base10 = 5, Numeral = "V" });
+      TestPairs.Add(new NumberPair() { Base10 = 4, Numeral = "IV" });
+      TestPairs.Add(new NumberPair() { Base10 = 3, Numeral = "III" });
+      TestPairs.Add(new NumberPair() { Base10 = 2, Numeral = "II" });
+      TestPairs.Add(new NumberPair() { Base10 = 1, Numeral = "I" });
+      TestPairs.Add(new NumberPair() { Base10 = 3999, Numeral = "MMMCMXCIX" });
+      TestPairs.Add(new NumberPair() { Base10 = 2777, Numeral = "MMDCCLXXVII" });
+      TestPairs.Add(new NumberPair() { Base10 = 1111, Numeral = "MCXI" });
     }
-    
+
     [Fact]
     public void ConvertsBase10ToNumerals()
     {
