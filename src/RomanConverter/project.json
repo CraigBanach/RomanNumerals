@@ -16,7 +16,8 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1",
-    "System.Interactive.Async": "3.0.0"
+    "System.Interactive.Async": "3.0.0",
+    "Microsoft.Extensions.Configuration.CommandLine": "1.1.0"
   },
 
   "tools": {
