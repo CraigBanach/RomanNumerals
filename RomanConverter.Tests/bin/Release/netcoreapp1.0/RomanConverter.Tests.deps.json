@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "08ba52ae2395e5ab9e92ccfc0bc8b756714b0e3b"
+    "signature": "af364461e8eea3c4c8df3491cf73f37bb224269d"
   },
   "compilationOptions": {},
   "targets": {
@@ -667,6 +667,15 @@
         },
         "runtime": {
           "lib/netstandard1.1/Microsoft.Extensions.Configuration.Binder.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.CommandLine/1.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "1.1.0",
+          "NETStandard.Library": "1.6.1"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Microsoft.Extensions.Configuration.CommandLine.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration.EnvironmentVariables/1.1.0": {
@@ -2414,7 +2423,8 @@
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1",
-          "System.Interactive.Async": "3.0.0"
+          "System.Interactive.Async": "3.0.0",
+          "Microsoft.Extensions.Configuration.CommandLine": "1.1.0"
         },
         "runtime": {
           "RomanConverter.dll": {}
@@ -2687,6 +2697,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-kK8QuBcPQtmKJCkC9enc1uMRFa++mPTuVNm2K5jDVXcAYKRBcFSbdEBvIe1JIgA6dEsAQeqjfHfKSaUJ8f5NFQ=="
+    },
+    "Microsoft.Extensions.Configuration.CommandLine/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-buL5gD1M4TZpr8/NB8QF47GwP83ra2KEPOP3oMD8/0Is9WQdzJGKLxziUJ4t+oAA3+b27UrQ4yAYtpSV5HT6Gw=="
     },
     "Microsoft.Extensions.Configuration.EnvironmentVariables/1.1.0": {
       "type": "package",
