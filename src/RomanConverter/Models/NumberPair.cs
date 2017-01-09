@@ -17,14 +17,14 @@ namespace RomanConverter.Models
     {
       if ( Base10 != null )
       {
-        ConvertToRoman();
+        Numeral = ConvertToRoman( (int) Base10);
       } else
       {
-        ConvertToBase10();
+        Base10 = ConvertToBase10();
       }
     }
 
-    private void ConvertToBase10()
+    private int ConvertToBase10()
     {
       String query = Numeral;
 
@@ -56,9 +56,12 @@ namespace RomanConverter.Models
       }
 
       if ( result > 3999 )
-      { Base10 = 0; }
-      else
-      { Base10 = result; }
+        return 0;
+
+      if ( ConvertToRoman(result) != Numeral )
+        return 0;
+
+      return result;
     }
 
     private Tuple<int, string> CalculateNumbers( string query, char[] array )
@@ -99,9 +102,9 @@ namespace RomanConverter.Models
       return Tuple.Create(result, query);
     }
 
-    private void ConvertToRoman()
+    private string ConvertToRoman(int input)
     {
-      int number = (int) Base10;
+      int number = input;
 
       if ( number > Numerals.RomanLimit )
         throw new InputOutOfRangeException();
@@ -131,7 +134,7 @@ namespace RomanConverter.Models
         numeralArray[3] = romCalculateUnits(number);
       }
 
-      Numeral = pieceTogether(numeralArray);
+      return pieceTogether(numeralArray);
     }
 
     private string pieceTogether( Dictionary<Numeral, SByte>[] numeralArray )

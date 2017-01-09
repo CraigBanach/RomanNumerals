@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RomanConverter.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace RomanConverterTests
   {
     private readonly TestServer _server;
     private readonly HttpClient _client;
+    
     public ApiTests()
     {
       // Arrange
@@ -22,7 +25,8 @@ namespace RomanConverterTests
     [Fact]
     public async Task GetSingleRoman()
     {
-      // Act
+      var jsonSerializerSettings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+    // Act
       var response = await _client.GetAsync("api/roman/1");
       response.EnsureSuccessStatusCode();
 
@@ -31,7 +35,7 @@ namespace RomanConverterTests
       NumberPair expectedResponse = new NumberPair() { Base10 = 1, Numeral = "I" };
 
       // Assert
-      Assert.Equal("{\"base10\":1,\"numeral\":\"I\"}",
+      Assert.Equal(JsonConvert.SerializeObject(expectedResponse, Formatting.None, jsonSerializerSettings),
           responseString);
     }
   }

@@ -30,7 +30,7 @@ namespace RomanConverter.Controllers.apiControllers
       bool result = int.TryParse(input, out number);
       if ( result )
       {
-        if ( number > 4000 || number < 1 )
+        if ( number > 3999 || number < 1 )
           return BadRequest("The value supplied is outside of the range of possible values of Roman Numerals. Allowed range is natural numbers 1-3999 inclusive.");
 
         answer = new NumberPair() { Base10 = number };
@@ -38,7 +38,7 @@ namespace RomanConverter.Controllers.apiControllers
       else
       {
         if ( input.Length > 15 )
-          return BadRequest("An invalid Roman Numeral has been supplied. Valid Roman Numerals have a maximum lenght of 15 characters.");
+          return BadRequest("An invalid Roman Numeral has been supplied. Valid Roman Numerals have a maximum length of 15 characters.");
 
         Regex rgx = new Regex(@"[^ixvldcm]", RegexOptions.IgnoreCase);
         if ( rgx.IsMatch(input) )
@@ -50,7 +50,7 @@ namespace RomanConverter.Controllers.apiControllers
       answer.Convert();
 
       if ( answer.Base10 == 0 )
-        return BadRequest("The value supplied is outside of the range of possible values of Roman Numerals. Allowed range is natural numbers 1-3999 inclusive.");
+        return BadRequest("The value supplied is outside of the range of possible values or the Romon Numeral provided is poorly formed.");
 
       return Ok(answer);
     }
