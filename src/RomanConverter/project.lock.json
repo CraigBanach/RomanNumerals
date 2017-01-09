@@ -2,7 +2,7 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETCoreApp,Version=v1.0": {
+    ".NETCoreApp,Version=v1.1": {
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -3003,7 +3003,7 @@
           "System.Runtime.Handles": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.5/System.Runtime.InteropServices.dll": {}
+          "ref/netcoreapp1.1/System.Runtime.InteropServices.dll": {}
         },
         "runtime": {
           "lib/portable-net45+win8+wpa81/_._": {}
@@ -3455,15 +3455,10 @@
       "System.Text.RegularExpressions/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Threading": "4.3.0"
+          "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.6/System.Text.RegularExpressions.dll": {}
+          "ref/netcoreapp1.1/System.Text.RegularExpressions.dll": {}
         },
         "runtime": {
           "lib/netstandard1.6/System.Text.RegularExpressions.dll": {}
@@ -10144,7 +10139,7 @@
       "Microsoft.NETCore.App >= 1.0.1",
       "System.Interactive.Async >= 3.0.0"
     ],
-    ".NETCoreApp,Version=v1.0": []
+    ".NETCoreApp,Version=v1.1": []
   },
   "tools": {
     ".NETCoreApp,Version=v1.0": {
