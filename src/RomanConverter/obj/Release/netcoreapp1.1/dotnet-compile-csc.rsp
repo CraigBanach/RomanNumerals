@@ -177,7 +177,6 @@
 -resource:"G:\dev\RomanConverter\src\RomanConverter\obj\Release\netcoreapp1.1\RomanConverterdotnet-compile.deps.json",RomanConverter.deps.json
 "G:\dev\RomanConverter\src\RomanConverter\Program.cs"
 "G:\dev\RomanConverter\src\RomanConverter\Startup.cs"
-"G:\dev\RomanConverter\src\RomanConverter\Controllers\ValuesController.cs"
 "G:\dev\RomanConverter\src\RomanConverter\Controllers\apiControllers\RomanController.cs"
 "G:\dev\RomanConverter\src\RomanConverter\Models\NumberPair.cs"
 "G:\dev\RomanConverter\src\RomanConverter\Models\NumeralMappings.cs"
