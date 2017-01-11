@@ -5,7 +5,7 @@
     "Microsoft.AspNetCore.Routing": "1.0.1",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
-    //"Microsoft.AspNetCore.StaticFiles": "1.1.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0",
     "Microsoft.Extensions.Configuration.CommandLine": "1.1.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
@@ -56,6 +56,7 @@
   },
 
   "scripts": {
+    "prepublish": [ "bower install" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
